@@ -23,7 +23,7 @@ steps:
   inputs:
     jfrogPlatformConnection: 'JFrog Platform connexion'
     useCustomVersion: true
-    cliVersion: '2.74.0'
+    cliVersion: '2.78.2'
     command: |
       jf rt ping
 
