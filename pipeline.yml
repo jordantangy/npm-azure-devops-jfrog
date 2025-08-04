@@ -33,7 +33,7 @@ steps:
     command: 'install'
     artifactoryConnection: 'jordanta-rt'
     sourceRepo: 'jordanta-npm-remote'
-    workingFolder: 'packages/package.json'
+    workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
     collectBuildInfo: true
     threads: '1'
     buildName: 'ad-npm-build'
