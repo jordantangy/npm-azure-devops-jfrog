@@ -27,3 +27,15 @@ steps:
     command: |
       jf rt ping
 
+
+- task: JFrogNpm@1
+  inputs:
+    command: 'install'
+    artifactoryConnection: 'jordanta-rt'
+    sourceRepo: 'jordanta-npm-remote'
+    workingFolder: 'packages/package.json'
+    collectBuildInfo: true
+    threads: '1'
+    buildName: 'ad-npm-build'
+    buildNumber: '1'
+    projectKey: 'jordanta-p'
