@@ -38,7 +38,7 @@ steps:
     threads: '1'
     buildName: 'ad-npm-build-test'
     buildNumber: '1'
-    projectKey: 'jordanta-p'
+    projectKey: 'jordantap'
 
 - task: JFrogNpm@1
   inputs:
@@ -48,5 +48,5 @@ steps:
     workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
     collectBuildInfo: true
     buildName: 'ad-npm-build-test'
-    buildNumber: '2'
-    projectKey: 'jordanta-p'
+    buildNumber: '1'
+    projectKey: 'jordantap'
