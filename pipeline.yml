@@ -50,3 +50,10 @@ steps:
     buildName: 'ad-npm-build-test'
     buildNumber: '1'
     projectKey: 'jordantap'
+
+- task: JFrogPublishBuildInfo@1
+  inputs:
+    artifactoryConnection: 'jordanta-rt'
+    buildName: 'ad-npm-build-test'
+    buildNumber: '1'
+    projectKey: 'jordantap'
