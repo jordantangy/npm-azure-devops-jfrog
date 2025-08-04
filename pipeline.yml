@@ -39,3 +39,14 @@ steps:
     buildName: 'ad-npm-build'
     buildNumber: '1'
     projectKey: 'jordanta-p'
+
+- task: JFrogNpm@1
+  inputs:
+    command: 'pack and publish'
+    artifactoryConnection: 'jordanta-rt'
+    targetRepo: 'jordanta-npm-local'
+    workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
+    collectBuildInfo: true
+    buildName: 'ad-npm-build'
+    buildNumber: '1'
+    projectKey: 'jordanta-p'
