@@ -3,7 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pool: Default # Agent is running on a machine on prem 
+pool: Azure Pipelines # Agent is running on a machine on prem 
 
 trigger:
 - main
