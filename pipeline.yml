@@ -9,51 +9,70 @@ trigger:
 pool:
   name: Default
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  HTTP_PROXY: "https://test-proxy.com:8100"
+  HTTPS_PROXY: "https://test-proxy.com:8100"
+  system.debug: true
+  JFROG_CLI_LOG_LEVEL: DEBUG
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+- stage: DownloadAndPublish
+  displayName: 'Download, push and update unified agent'
+  jobs:
+  - job: DownloadAndPublish
+    displayName: 'Download and Publish'
+    steps:
+    - script: echo "Hello, world!"
+      displayName: 'Run a one-line script'
+
+    - task: JfrogCliV2@1
+      name: jfStep
+      inputs:
+        jfrogPlatformConnection: 'azdo-test'
+        command: |
+          jf rt ping
+
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
 
 
-- task: JfrogCliV2@1
-  inputs:
-    jfrogPlatformConnection: 'JFrog Platform connexion'
-    useCustomVersion: true
-    cliVersion: '2.78.2'
-    command: |
-      jf rt ping
+# - task: JfrogCliV2@1
+#   inputs:
+#     jfrogPlatformConnection: 'JFrog Platform connexion'
+#     useCustomVersion: true
+#     cliVersion: '2.78.2'
+#     command: |
+#       jf rt ping
 
 
-- task: JFrogNpm@1
-  inputs:
-    command: 'install'
-    artifactoryConnection: 'jordanta-rt'
-    sourceRepo: 'jordanta-npm-remote'
-    workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
-    collectBuildInfo: true
-    threads: '1'
-    buildName: 'ad-npm-build-test'
-    buildNumber: '1'
-    projectKey: 'jordantap'
+# - task: JFrogNpm@1
+#   inputs:
+#     command: 'install'
+#     artifactoryConnection: 'jordanta-rt'
+#     sourceRepo: 'jordanta-npm-remote'
+#     workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
+#     collectBuildInfo: true
+#     threads: '1'
+#     buildName: 'ad-npm-build-test'
+#     buildNumber: '1'
+#     projectKey: 'jordantap'
 
-- task: JFrogNpm@1
-  inputs:
-    command: 'pack and publish'
-    artifactoryConnection: 'jordanta-rt'
-    targetRepo: 'jordanta-npm-local'
-    workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
-    collectBuildInfo: true
-    buildName: 'ad-npm-build-test'
-    buildNumber: '1'
-    projectKey: 'jordantap'
+# - task: JFrogNpm@1
+#   inputs:
+#     command: 'pack and publish'
+#     artifactoryConnection: 'jordanta-rt'
+#     targetRepo: 'jordanta-npm-local'
+#     workingFolder: '/Users/jordanta/Desktop/test/npm-azure-devops-jfrog/packages'
+#     collectBuildInfo: true
+#     buildName: 'ad-npm-build-test'
+#     buildNumber: '1'
+#     projectKey: 'jordantap'
 
-- task: JFrogPublishBuildInfo@1
-  inputs:
-    artifactoryConnection: 'jordanta-rt'
-    buildName: 'ad-npm-build-test'
-    buildNumber: '1'
-    projectKey: 'jordantap'
+# - task: JFrogPublishBuildInfo@1
+#   inputs:
+#     artifactoryConnection: 'jordanta-rt'
+#     buildName: 'ad-npm-build-test'
+#     buildNumber: '1'
+#     projectKey: 'jordantap'
