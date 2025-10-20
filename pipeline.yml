@@ -10,8 +10,8 @@ pool:
   name: Default
 
 variables:
-  HTTP_PROXY: "https://test-proxy.com:8100"
-  HTTPS_PROXY: "https://test-proxy.com:8100"
+  HTTP_PROXY: "https://<PROXY_SERVER_URL>:8100"
+  HTTPS_PROXY: "https://<PROXY_SERVER_URL>:8100"
   system.debug: true
   JFROG_CLI_LOG_LEVEL: DEBUG
 
@@ -22,6 +22,11 @@ stages:
   - job: DownloadAndPublish
     displayName: 'Download and Publish'
     steps:
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+      displayName: 'Run a multi-line script'
+
     - script: echo "Hello, world!"
       displayName: 'Run a one-line script'
 
@@ -31,6 +36,8 @@ stages:
         jfrogPlatformConnection: 'azdo-test'
         command: |
           jf rt ping
+      continueOnError: true
+
 
 # - script: |
 #     echo Add other tasks to build, test, and deploy your project.
